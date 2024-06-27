@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 const app = express();
 
 const CLIENT_ID = '1255853786505678869'; // Remplacez par votre Client ID
@@ -33,12 +34,16 @@ app.get('/callback', async (req, res) => {
         // Log the full user info response for debugging
         console.log('User Info Response:', userInfo.data);
 
-        // Send only the welcome message to the user
-        res.send(`<h1>Bonjour, ${userInfo.data.global_name || userInfo.data.username}</h1>`);
+        // Redirect to the home page after successful login with username in query
+        res.redirect(`/home?username=${encodeURIComponent(userInfo.data.global_name || userInfo.data.username)}`);
     } catch (error) {
         console.error('Erreur lors de la récupération du token:', error.response ? error.response.data : error.message);
         res.send(`Une erreur est survenue lors de la connexion : ${error.response ? JSON.stringify(error.response.data) : error.message}`);
     }
+});
+
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'home.html'));
 });
 
 app.listen(3000, () => {
