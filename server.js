@@ -7,6 +7,9 @@ const CLIENT_ID = '1255853786505678869'; // Remplacez par votre Client ID
 const CLIENT_SECRET = 'dheSROeH6xLPrLt6n2aB-hVUswp1Vlop'; // Remplacez par votre Client Secret
 const REDIRECT_URI = 'http://localhost:3000/callback';
 
+// Servir les fichiers statiques du répertoire "public"
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/callback', async (req, res) => {
     const code = req.query.code;
     const data = {
@@ -43,7 +46,7 @@ app.get('/callback', async (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, 'home.html'));
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
 app.listen(3000, () => {
