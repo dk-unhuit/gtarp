@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Century Gothic', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Utilisation de la police Roboto */
 }
 
 header {
@@ -13,22 +13,13 @@ header {
     color: #fff;
 }
 
-.logo a {
-    color: #fff;
-    padding: 0 20px;
-    border: 1px solid #fff;
+.logo a img {
+    max-width: 50px; /* Ajustez cette valeur selon la taille souhaitée */
+    height: auto;
+    display: block;
     position: absolute;
-    top: 10px;
-    left: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 900;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-.logo span {
-    color: rgb(7, 154, 73);
-    font-weight: bold;
+    top: 20px; /* Ajustez cette valeur pour déplacer le logo verticalement */
+    left: 20px; /* Ajustez cette valeur pour déplacer le logo horizontalement */
 }
 
 nav ul {
@@ -66,22 +57,32 @@ nav ul li.active a {
 
 .titre {
     position: absolute;
-    top: 50%;
+    top: 40%; /* Ajustez cette valeur pour déplacer le texte verticalement */
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
 }
 
+.titre-logo {
+    max-width: 100px; /* Ajustez cette valeur selon la taille souhaitée */
+    height: auto;
+    margin-bottom: 20px; /* Espace entre le logo et le texte */
+}
+
 .titre h1 {
-    font-size: 70px;
+    font-size: 24px; /* Ajustez la taille de la police selon vos préférences */
+    font-weight: 700; /* Poids de la police pour rendre le texte plus visible */
     margin-bottom: 20px;
+    line-height: 1.4; /* Hauteur de ligne pour améliorer la lisibilité */
+    color: #fff;
 }
 
 .bouton {
     position: absolute;
-    top: 70%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .bouton a {
