@@ -1,52 +1,58 @@
 const express = require('express');
-const axios = require('axios');
 const path = require('path');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const User = require('./models/User');
+require('./config/passport-setup');
+const { isAuthenticated, isAdmin } = require('./middleware/auth');
+
 const app = express();
 
-const CLIENT_ID = '1255853786505678869'; // Remplacez par votre Client ID
-const CLIENT_SECRET = 'dheSROeH6xLPrLt6n2aB-hVUswp1Vlop'; // Remplacez par votre Client Secret
-const REDIRECT_URI = 'http://localhost:3000/callback';
+const MONGO_URI = 'mongodb+srv://djeakarti:kIoW4tIGCOWZWtwq@uslife.wmdf6zd.mongodb.net/?retryWrites=true&w=majority&appName=USLife';
 
-// Servir les fichiers statiques du répertoire "public"
+mongoose.connect(MONGO_URI)
+    .then(() => console.log('Connexion à MongoDB réussie'))
+    .catch(err => console.error('Erreur de connexion à MongoDB', err));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: MONGO_URI })
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/callback', async (req, res) => {
-    const code = req.query.code;
-    const data = {
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-        grant_type: 'authorization_code',
-        redirect_uri: REDIRECT_URI,
-        code: code,
-    };
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-    try {
-        const response = await axios.post('https://discord.com/api/oauth2/token', new URLSearchParams(data), {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        });
-
-        const { access_token } = response.data;
-        const userInfo = await axios.get('https://discord.com/api/users/@me', {
-            headers: {
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
-
-        // Log the full user info response for debugging
-        console.log('User Info Response:', userInfo.data);
-
-        // Redirect to the home page after successful login with username in query
-        res.redirect(`/home?username=${encodeURIComponent(userInfo.data.global_name || userInfo.data.username)}`);
-    } catch (error) {
-        console.error('Erreur lors de la récupération du token:', error.response ? error.response.data : error.message);
-        res.send(`Une erreur est survenue lors de la connexion : ${error.response ? JSON.stringify(error.response.data) : error.message}`);
-    }
+// Ajouter la route pour la page d'accueil
+app.get('/', (req, res) => {
+    res.render('index');
 });
 
-app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+app.get('/auth/discord', passport.authenticate('discord'));
+
+app.get('/auth/discord/callback', passport.authenticate('discord', {
+    failureRedirect: '/'
+}), (req, res) => {
+    res.redirect('/home');
+});
+
+app.get('/home', isAuthenticated, (req, res) => {
+    res.render('home', { user: req.user });
+});
+
+app.get('/admin', isAdmin, (req, res) => {
+    res.render('admin', { user: req.user });
 });
 
 app.listen(3000, () => {
