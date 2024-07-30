@@ -28,8 +28,17 @@
         <div id="welcome" class="bouton">
             <p>Merci de vous être identifié, <%= user.username %>!</p>
             <p>Votre rôle est : <%= user.role %></p>
-            <p>Veuillez remplir le formulaire pour rejoindre un clan.</p>
-            <a id="google-form-link" href="https://docs.google.com/forms/d/your-google-form-id/viewform" target="_blank" class="btn">Remplir le formulaire</a>
+
+            <% if (user.role === 'user') { %>
+                <p>Veuillez choisir un clan :</p>
+                <a href="/clan/civils" class="btn">Civils</a>
+                <a href="/clan/service_publique" class="btn">Service Publique</a>
+                <a href="/clan/illegal" class="btn">Illégale</a>
+            <% } else { %>
+                <p>Veuillez remplir le formulaire pour rejoindre un clan.</p>
+                <a id="google-form-link" href="https://docs.google.com/forms/d/your-google-form-id/viewform" target="_blank" class="btn">Remplir le formulaire</a>
+            <% } %>
+
             <% if (user.role === 'admin') { %>
                 <p><a href="/admin" class="btn">Interface d'administration</a></p>
             <% } %>
