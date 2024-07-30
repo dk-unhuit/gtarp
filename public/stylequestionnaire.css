@@ -2,12 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
-body {
-    background-color: #f5f5dc; /* Couleur beige */
-    color: #333;
+    font-family: 'Century Gothic', sans-serif;
 }
 
 header {
@@ -20,20 +15,20 @@ header {
     color: #fff;
 }
 
-.logo img {
-    max-width: 50px;
+.logo a img {
+    max-width: 80px; /* Ajustez cette valeur selon la taille souhaitée */
     height: auto;
+    display: block;
+    position: absolute;
+    top: 10px; /* Ajustez cette valeur pour déplacer le logo verticalement */
+    left: 30px; /* Ajustez cette valeur pour déplacer le logo horizontalement */
 }
 
 nav ul {
     list-style: none;
+    float: right;
     display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin-left: 20px;
+    margin-top: 20px;
 }
 
 nav ul li a {
@@ -42,6 +37,7 @@ nav ul li a {
     padding: 10px 20px;
     text-transform: uppercase;
     border: 1px solid transparent;
+    margin: 10px;
     font-weight: 500;
     transition: background 0.6s ease, color 0.6s ease;
 }
@@ -52,66 +48,156 @@ nav ul li.active a {
     color: #000;
 }
 
-main {
+.principale {
+    max-width: 114rem;
+    margin: auto;
     padding: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    min-height: calc(100vh - 100px);
+}
+
+.titre {
+    position: absolute;
+    top: 47%; /* Ajustez cette valeur pour déplacer le logo verticalement */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrer horizontalement */
+    text-align: center;
+}
+
+.titre-logo {
+    max-width: 200px; /* Ajustez cette valeur selon la taille souhaitée */
+    height: auto;
+    margin-bottom: 20px; /* Espace entre le logo et le texte */
+}
+
+.bouton {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.bouton a {
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #fff;
+    padding: 10px 20px;
+    margin: 0 10px;
+    transition: background 0.6s ease, color 0.6s ease;
+}
+
+.btn:hover {
+    background-color: #2B422D;
+    color: #fff;
+}
+
+#welcome {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 24px;
+    position: absolute;
+    top: 65%; /* Ajustez cette valeur pour déplacer le texte verticalement */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#google-form-link {
+    margin-top: 20px; /* Ajoutez cette ligne pour abaisser le bouton */
+    display: inline-block;
+}
+
+body {
+    background-color: #D4E6D5; /* Nouvelle couleur de fond plus douce */
+    color: #333; /* Couleur du texte pour un meilleur contraste */
 }
 
 .container {
-    padding: 20px;
     max-width: 800px;
     margin: auto;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff; /* Fond blanc pour le formulaire */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.container h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-}
-
-.container p {
-    margin-bottom: 20px;
-    font-size: 18px;
-    color: #555;
-}
-
-.container form .question {
+h1 {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-.container form .question label {
+p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.question label {
     display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #333;
+    margin-bottom: 5px;
 }
 
-.container form .question input[type="text"] {
+.question input[type="text"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 4px;
 }
 
-.container form button {
-    display: inline-block;
+button[type="submit"] {
+    align-self: center;
     padding: 10px 20px;
-    background: #007bff;
-    color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 4px;
+    background-color: #426445;
+    color: #fff;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
-.container form button:hover {
-    background: #0056b3;
+button[type="submit"]:hover {
+    background-color: #2B422D;
+}
+
+.footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer a {
+    color: #1e90ff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer .social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.footer .social-links a {
+    margin: 0 10px;
 }
