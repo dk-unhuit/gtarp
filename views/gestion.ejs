@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion</title>
+    <link rel="stylesheet" href="/stylegestion.css">
+</head>
+<body>
+    <header>
+        <div class="principale">
+            <div class="logo">
+                <a href="#"><img src="/images/logo.png" alt="USLife Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/admin-home">Accueil</a></li>
+                    <li><a href="#">Service</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">À propos de nous</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li class="active"><a href="#">Gestion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Gestion des réponses</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom Discord</th>
+                        <th>ID Discord</th>
+                        <th>Clan</th>
+                        <th>Réponses</th>
+                        <th>Date et Heure</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (responses.length > 0) { %>
+                        <% responses.forEach(response => { %>
+                            <tr>
+                                <td><%= response.userId ? response.userId.username : 'Inconnu' %></td>
+                                <td><%= response.userId ? response.userId.discordId : 'Inconnu' %></td>
+                                <td><%= response.clan %></td>
+                                <td>
+                                    <% if (response.responses) { %>
+                                        <% Object.keys(response.responses.toJSON()).forEach(question => { %>
+                                            <p><%= question %>: <%= response.responses.get(question) %></p>
+                                        <% }) %>
+                                    <% } else { %>
+                                        <p>Aucune réponse trouvée</p>
+                                    <% } %>
+                                </td>
+                                <td><%= new Date(response.createdAt).toLocaleString() %></td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="5">Aucune réponse trouvée</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>Un serveur créé par la communauté pour la communauté !</p>
+        <div class="social-links">
+            <a href="https://discord.com/invite/uslife"><i class="fab fa-discord"></i> Discord</a>
+            <a href="https://www.instagram.com/uslifegram/"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.youtube.com/channel/UCxaKqZu_dMZKETYwInHy6WA"><i class="fab fa-youtube"></i> YouTube</a>
+        </div>
+        <p>Copyright © 2024 USLife - Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

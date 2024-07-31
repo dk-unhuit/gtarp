@@ -2,6 +2,9 @@ const passport = require('passport');
 const DiscordStrategy = require('passport-discord').Strategy;
 const User = require('../models/User');
 
+// ID de l'utilisateur Discord qui doit être admin
+const newAdminDiscordId = '1268194529593528354';
+
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
@@ -26,11 +29,16 @@ passport.use(new DiscordStrategy({
         if (existingUser) {
             return done(null, existingUser);
         }
+        
+        // Vérifiez si le nouvel utilisateur Discord doit être admin
+        const isNewAdmin = profile.id === newAdminDiscordId;
+
         const newUser = new User({
             discordId: profile.id,
             username: profile.username,
             discriminator: profile.discriminator,
-            role: 'user' // Le rôle par défaut est 'user'
+            role: isNewAdmin ? 'admin' : 'user',
+            status: 'neutre' // ou autre statut par défaut
         });
         let savedUser = await newUser.save();
         done(null, savedUser);

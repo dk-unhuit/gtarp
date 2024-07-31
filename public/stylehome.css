@@ -14,12 +14,12 @@ header {
 }
 
 .logo a img {
-    max-width: 80px; /* Ajustez cette valeur selon la taille souhaitée */
+    max-width: 80px;
     height: auto;
     display: block;
     position: absolute;
-    top: 10px; /* Ajustez cette valeur pour déplacer le logo verticalement */
-    left: 30px; /* Ajustez cette valeur pour déplacer le logo horizontalement */
+    top: 10px;
+    left: 30px;
 }
 
 nav ul {
@@ -57,16 +57,16 @@ nav ul li.active a {
 
 .titre {
     position: absolute;
-    top: 47%; /* Ajustez cette valeur pour déplacer le logo verticalement */
+    top: 47%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centrer horizontalement */
+    transform: translate(-50%, -50%);
     text-align: center;
 }
 
 .titre-logo {
-    max-width: 200px; /* Ajustez cette valeur selon la taille souhaitée */
+    max-width: 200px;
     height: auto;
-    margin-bottom: 20px; /* Espace entre le logo et le texte */
+    margin-bottom: 20px;
 }
 
 .bouton {
@@ -84,36 +84,36 @@ nav ul li.active a {
     padding: 10px 30px;
     margin: 0 10px;
     transition: background 0.6s ease, color 0.6s ease;
-    border-radius: 25px; /* Ajoutez cette ligne pour arrondir les bords */
-    background-color: rgba(255, 255, 255, 0.1); /* Légère couleur de fond */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajoutez une ombre */
-    font-size: 1rem; /* Augmentez légèrement la taille de la police */
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
 }
 
 .bouton a:hover {
     background-color: #fff;
     color: #000;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Augmentez l'ombre au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
-    background-color: #fff; /* Couleur par défaut */
+    background-color: #fff;
 }
 
 .fonctionnaire-btn:hover {
-    background-color: #2B422D !important; /* Couleur spécifique pour Fonctionnaire */
+    background-color: #2B422D !important;
     color: #fff;
 }
 
 .bandit-btn:hover {
-    background-color: #8B0000 !important; /* Couleur rouge pour Bandit */
+    background-color: #8B0000 !important;
     color: #fff;
 }
 
 .welcome-text {
-    font-family: 'Montserrat', sans-serif; /* Utilisation de la police Montserrat */
-    font-size: 1.7rem; /* Ajustez la taille de la police selon vos préférences */
-    margin: 10px 0; /* Ajoutez de l'espace entre les paragraphes */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7rem;
+    margin: 10px 0;
 }
 
 #welcome {
@@ -121,14 +121,14 @@ nav ul li.active a {
     color: #fff;
     font-size: 24px;
     position: absolute;
-    top: 65%; /* Ajustez cette valeur pour déplacer le texte verticalement */
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
 }
 
 #google-form-link {
-    margin-top: 20px; /* Ajoutez cette ligne pour abaisser le bouton */
+    margin-top: 20px;
     display: inline-block;
 }
 

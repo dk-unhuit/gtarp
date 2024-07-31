@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/stylehome.css">
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="/styleadminhome.css">
 </head>
 <body>
     <header>
@@ -15,11 +14,12 @@
             </div>
             <nav>
                 <ul>
-                    <li class="active"><a href="#">Accueil</a></li>
+                    <li class="active"><a href="/admin-home">Accueil</a></li>
                     <li><a href="#">Service</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">À propos de nous</a></li>
                     <li><a href="#">Contact</a></li>
+                    <li><a href="/admin/gestion">Gestion</a></li>
                 </ul>
             </nav>
         </div>
@@ -27,8 +27,9 @@
             <img src="images/logo.png" alt="USLife Logo" class="titre-logo">
         </div>
         <div id="welcome" class="bouton">
-            <h1>Bienvenue à l'interface d'administration</h1>
-            <!-- Ajoutez du contenu pour gérer les utilisateurs ici -->
+            <p>Merci de vous être identifié, <%= user.username %>!</p>
+            <p>Votre rôle est : <%= user.role %></p>
+            <p>Vous êtes sur l'interface d'administration.</p>
         </div>
     </header>
     <footer class="footer">

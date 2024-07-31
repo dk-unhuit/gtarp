@@ -46,15 +46,31 @@ app.get('/auth/discord', passport.authenticate('discord'));
 app.get('/auth/discord/callback', passport.authenticate('discord', {
     failureRedirect: '/'
 }), (req, res) => {
-    res.redirect('/home');
+    // Rediriger les administrateurs vers la page admin-home
+    if (req.user.role === 'admin') {
+        res.redirect('/admin-home');
+    } else {
+        res.redirect('/home');
+    }
 });
 
 app.get('/home', isAuthenticated, (req, res) => {
     res.render('home', { user: req.user });
 });
 
-app.get('/admin', isAdmin, (req, res) => {
-    res.render('admin', { user: req.user });
+app.get('/admin-home', isAdmin, (req, res) => {
+    res.render('admin-home', { user: req.user });
+});
+
+// Route pour la page de gestion
+app.get('/admin/gestion', isAdmin, async (req, res) => {
+    try {
+        const responses = await QuestionnaireResponse.find().populate('userId', 'username discordId');
+        res.render('gestion', { responses });
+    } catch (error) {
+        console.error('Erreur lors de la récupération des réponses :', error);
+        res.status(500).send('Erreur du serveur');
+    }
 });
 
 // Routes pour les pages de questionnaire des clans
@@ -142,4 +158,14 @@ app.post('/clan/civils', isAuthenticated, async (req, res) => {
 
 app.listen(3000, () => {
     console.log('Serveur démarré sur http://localhost:3000');
+});
+
+app.get('/api/users', async (req, res) => {
+    try {
+        const users = await User.find({});
+        res.json(users);
+    } catch (error) {
+        console.error('Erreur lors de la récupération des utilisateurs :', error);
+        res.status(500).send('Erreur du serveur');
+    }
 });
