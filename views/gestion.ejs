@@ -10,7 +10,7 @@
     <header>
         <div class="principale">
             <div class="logo">
-                <a href="#"><img src="/images/logo.png" alt="USLife Logo"></a>
+                <a href="#"><img src="images/logo.png" alt="USLife Logo"></a>
             </div>
             <nav>
                 <ul>
@@ -35,6 +35,7 @@
                         <th>Clan</th>
                         <th>Réponses</th>
                         <th>Date et Heure</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,11 +55,19 @@
                                     <% } %>
                                 </td>
                                 <td><%= new Date(response.createdAt).toLocaleString() %></td>
+                                <td>
+                                    <form action="/admin/accept/<%= response._id %>" method="post" class="action-form">
+                                        <button type="submit" class="btn accept-btn">Accepter</button>
+                                    </form>
+                                    <form action="/admin/reject/<%= response._id %>" method="post" class="action-form">
+                                        <button type="submit" class="btn reject-btn">Refuser</button>
+                                    </form>
+                                </td>
                             </tr>
                         <% }) %>
                     <% } else { %>
                         <tr>
-                            <td colspan="5">Aucune réponse trouvée</td>
+                            <td colspan="6">Aucune réponse trouvée</td>
                         </tr>
                     <% } %>
                 </tbody>
