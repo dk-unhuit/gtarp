@@ -19,6 +19,7 @@ mongoose.connect(MONGO_URI)
     .catch(err => console.error('Erreur de connexion à MongoDB', err));
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(session({
     secret: 'your_secret_key',
@@ -56,7 +57,7 @@ app.get('/admin', isAdmin, (req, res) => {
     res.render('admin', { user: req.user });
 });
 
-// Routes pour afficher les formulaires des clans
+// Routes pour les pages de questionnaire des clans
 app.get('/clan/civils', isAuthenticated, (req, res) => {
     res.render('civils', { user: req.user });
 });
@@ -69,76 +70,73 @@ app.get('/clan/illegal', isAuthenticated, (req, res) => {
     res.render('illegal', { user: req.user });
 });
 
-// Routes pour gérer la soumission des formulaires
-app.post('/clan/civils', isAuthenticated, async (req, res) => {
-    const responses = Object.keys(req.body).map(key => ({
-        question: key,
-        answer: req.body[key]
-    }));
-
-    const questionnaireResponse = new QuestionnaireResponse({
-        user: req.user._id,
-        role: req.user.role,
-        clan: 'civils',
-        discordId: req.user.discordId,
-        username: req.user.username,
-        responses: responses
-    });
-
-    try {
-        await questionnaireResponse.save();
-        res.send('Réponses enregistrées avec succès.');
-    } catch (err) {
-        console.error('Erreur lors de l\'enregistrement des réponses:', err);
-        res.status(500).send('Une erreur est survenue.');
-    }
-});
-
+// Routes pour les soumissions de formulaires des clans
 app.post('/clan/service_publique', isAuthenticated, async (req, res) => {
-    const responses = Object.keys(req.body).map(key => ({
-        question: key,
-        answer: req.body[key]
-    }));
-
-    const questionnaireResponse = new QuestionnaireResponse({
-        user: req.user._id,
-        role: req.user.role,
-        clan: 'service_publique',
-        discordId: req.user.discordId,
-        username: req.user.username,
-        responses: responses
-    });
-
     try {
-        await questionnaireResponse.save();
-        res.send('Réponses enregistrées avec succès.');
-    } catch (err) {
-        console.error('Erreur lors de l\'enregistrement des réponses:', err);
-        res.status(500).send('Une erreur est survenue.');
+        const userId = req.user._id;
+        const { q1, q2 } = req.body;
+
+        const newResponse = new QuestionnaireResponse({
+            userId: userId,
+            clan: 'Service Publique',
+            responses: { q1, q2 }
+        });
+
+        await newResponse.save();
+
+        // Mettre à jour le statut de l'utilisateur en attente
+        await User.findByIdAndUpdate(userId, { status: 'attente', clan: 'Service Publique' });
+
+        res.status(200).json({ message: 'Réponses enregistrées avec succès.' });
+    } catch (error) {
+        console.error('Erreur lors de l\'enregistrement des réponses :', error);
+        res.status(500).json({ message: 'Les réponses n\'ont pas pu être enregistrées.' });
     }
 });
 
 app.post('/clan/illegal', isAuthenticated, async (req, res) => {
-    const responses = Object.keys(req.body).map(key => ({
-        question: key,
-        answer: req.body[key]
-    }));
-
-    const questionnaireResponse = new QuestionnaireResponse({
-        user: req.user._id,
-        role: req.user.role,
-        clan: 'illegal',
-        discordId: req.user.discordId,
-        username: req.user.username,
-        responses: responses
-    });
-
     try {
-        await questionnaireResponse.save();
-        res.send('Réponses enregistrées avec succès.');
-    } catch (err) {
-        console.error('Erreur lors de l\'enregistrement des réponses:', err);
-        res.status(500).send('Une erreur est survenue.');
+        const userId = req.user._id;
+        const { q1, q2 } = req.body;
+
+        const newResponse = new QuestionnaireResponse({
+            userId: userId,
+            clan: 'Illégale',
+            responses: { q1, q2 }
+        });
+
+        await newResponse.save();
+
+        // Mettre à jour le statut de l'utilisateur en attente
+        await User.findByIdAndUpdate(userId, { status: 'attente', clan: 'Illégale' });
+
+        res.status(200).json({ message: 'Réponses enregistrées avec succès.' });
+    } catch (error) {
+        console.error('Erreur lors de l\'enregistrement des réponses :', error);
+        res.status(500).json({ message: 'Les réponses n\'ont pas pu être enregistrées.' });
+    }
+});
+
+app.post('/clan/civils', isAuthenticated, async (req, res) => {
+    try {
+        const userId = req.user._id;
+        const { q1, q2 } = req.body;
+
+        const newResponse = new QuestionnaireResponse({
+            userId: userId,
+            clan: 'Civils',
+            responses: { q1, q2 }
+        });
+
+        await newResponse.save();
+
+        // Mettre à jour le statut de l'utilisateur en attente
+        await User.findByIdAndUpdate(userId, { status: 'attente', clan: 'Civils' });
+
+        res.status(200).json({ message: 'Réponses enregistrées avec succès.' });
+    } catch (error) {
+        console.error('Erreur lors de l\'enregistrement des réponses :', error);
+        res.status(500).json({ message: 'Les réponses n\'ont pas pu être enregistrées.' });
     }
 });
 
