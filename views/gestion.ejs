@@ -27,6 +27,19 @@
     <main>
         <div class="container">
             <h1>Gestion des réponses</h1>
+            <!-- Formulaire de recherche -->
+            <form id="searchForm" action="/admin/gestion" method="get">
+                <input type="text" name="query" placeholder="Rechercher..." required>
+                <select name="filter">
+                    <option value="username">Nom Discord</option>
+                    <option value="discordId">ID Discord</option>
+                    <option value="date">Date/Heure</option>
+                    <option value="clan">Clan</option>
+                </select>
+                <button type="submit">Rechercher</button>
+                <!-- Bouton pour réinitialiser la recherche -->
+                <a href="/admin/gestion" class="btn-reset">Réinitialiser</a>
+            </form>
             <table>
                 <thead>
                     <tr>
@@ -42,8 +55,8 @@
                     <% if (responses.length > 0) { %>
                         <% responses.forEach(response => { %>
                             <tr>
-                                <td><%= response.userId ? response.userId.username : 'Inconnu' %></td>
-                                <td><%= response.userId ? response.userId.discordId : 'Inconnu' %></td>
+                                <td><%= response.user ? response.user.username : 'Inconnu' %></td>
+                                <td><%= response.user ? response.user.discordId : 'Inconnu' %></td>
                                 <td><%= response.clan %></td>
                                 <td>
                                     <a href="/admin/reponses/<%= response._id %>" class="btn-afficher">Afficher</a>

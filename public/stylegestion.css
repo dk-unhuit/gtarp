@@ -138,3 +138,48 @@ thead {
     background: none;
     display: inline;
 }
+
+form#searchForm {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+form#searchForm input[type="text"],
+form#searchForm select,
+form#searchForm button {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form#searchForm button {
+    background-color: #426445;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form#searchForm button:hover {
+    background-color: #365438;
+}
+
+/* Bouton de réinitialisation */
+.btn-reset {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    color: #333;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn-reset:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
