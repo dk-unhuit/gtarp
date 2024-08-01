@@ -98,6 +98,9 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+thead th {
+    color: #000; /* Changer la couleur de la police des noms des colonnes en noir */
+}
 thead {
     background-color: #426445;
     color: #fff;
@@ -155,15 +158,24 @@ form#searchForm button {
 }
 
 form#searchForm button {
-    background-color: #426445;
-    color: #fff;
-    border: none;
+    background-color: #f5f5f5; /* Couleur de fond similaire à celle du bouton Réinitialiser */
+    color: #333; /* Couleur de texte similaire */
+    border: 1px solid #ccc;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 form#searchForm button:hover {
-    background-color: #365438;
+    background-color: #e0e0e0; /* Couleur de fond au survol similaire */
+    color: #000; /* Couleur de texte au survol similaire */
+}
+
+/* Ajuster les tailles des boutons Rechercher et Réinitialiser pour qu'ils soient similaires */
+form#searchForm button,
+.btn-reset {
+    width: auto; /* Assure que la largeur s'adapte au contenu */
+    padding: 10px 20px; /* Taille similaire */
+    border-radius: 4px; /* Bordures similaires */
 }
 
 /* Bouton de réinitialisation */
@@ -182,4 +194,9 @@ form#searchForm button:hover {
 .btn-reset:hover {
     background-color: #e0e0e0;
     color: #000;
+}
+
+.container h1 {
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 20px; /* Ajouter un espace en dessous du texte */
 }
