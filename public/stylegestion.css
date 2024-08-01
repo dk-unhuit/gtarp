@@ -1,18 +1,15 @@
 /* stylegestion.css */
-
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-
 header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/fond.jpg');
     height: 100px;
@@ -22,29 +19,25 @@ header {
     padding: 0 20px;
     color: #fff;
 }
-
 .principale {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
-
 .logo a img {
     max-width: 80px;
     height: auto;
+    display: block;
 }
-
 nav ul {
     list-style: none;
     display: flex;
     margin: 0;
 }
-
 nav ul li {
     margin-left: 20px;
 }
-
 nav ul li a {
     text-decoration: none;
     color: #fff;
@@ -54,18 +47,15 @@ nav ul li a {
     font-weight: 500;
     transition: background 0.6s ease, color 0.6s ease;
 }
-
 nav ul li a:hover,
 nav ul li.active a {
     background: #fff;
     color: #000;
 }
-
 .container {
     flex: 1;
     padding: 20px;
 }
-
 footer.footer {
     background: #222;
     color: #fff;
@@ -75,58 +65,47 @@ footer.footer {
     width: 100%;
     margin-top: auto;
 }
-
 footer.footer p {
     margin: 5px 0;
 }
-
 footer.footer a {
     color: #1e90ff;
     text-decoration: none;
     margin: 0 10px;
 }
-
 footer.footer a:hover {
     text-decoration: underline;
 }
-
 footer.footer .social-links {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
 }
-
 footer.footer .social-links a {
     margin: 0 10px;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
-
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
-
 th {
     background-color: #f2f2f2;
 }
-
 thead {
     background-color: #426445;
     color: #fff;
 }
-
 .action-form {
     display: inline-block;
     margin: 5px 0;
 }
-
 .btn {
     color: #fff;
     text-decoration: none;
@@ -138,30 +117,24 @@ thead {
     display: block;
     text-align: center;
 }
-
 .accept-btn {
     background-color: rgba(16, 88, 1, 0.9);
 }
-
 .accept-btn:hover {
     background-color: rgba(32, 139, 34, 0.6);
     color: #fff;
 }
-
 .reject-btn {
     background-color: rgba(115, 0, 15, 0.9);
 }
-
 .reject-btn:hover {
     background-color: rgba(137, 28, 49, 0.6);
     color: #fff;
 }
-
 .btn-afficher {
-    color: #1e90ff; 
-    /*text-decoration: none;*/
-    border: none; 
-    padding: 0; 
-    background: none; 
-    display: inline; 
+    color: #1e90ff;
+    border: none;
+    padding: 0;
+    background: none;
+    display: inline;
 }
