@@ -30,20 +30,24 @@
             <p>Votre rôle est : <%= user.role %></p>
             <p>Votre statut est : <%= user.status %></p>
 
-            <% if (user.role === 'user' && user.status === 'neutre') { %>
-                <p>Veuillez choisir un clan :</p>
-                <a href="/clan/civils" class="btn">Civils</a>
-                <a href="/clan/service_publique" class="btn">Fonctionnaires</a>
-                <a href="/clan/illegal" class="btn">Bandits</a>
-            <% } else if (user.role === 'user' && user.status === 'attente') { %>
-                <p>Votre demande est en cours de traitement.</p>
+            <% if (user.role === 'user') { %>
+                <% if (user.status === 'neutre' || !user.clan) { %>
+                    <p>Veuillez choisir un clan :</p>
+                    <a href="/clan/civils" class="btn">Civils</a>
+                    <a href="/clan/service_publique" class="btn fonctionnaire-btn">Fonctionnaires</a>
+                    <a href="/clan/illegal" class="btn bandit-btn">Bandits</a>
+                <% } else if (user.status === 'attente') { %>
+                    <p>Votre demande est en cours de traitement.</p>
+                <% } else if (user.status === 'accepté') { %>
+                    <p>Bien joué, tu as été accepté, on t'attend à Los Santos !</p>
+                <% } else if (user.status === 'refusé') { %>
+                    <p>Votre demande a été refusée. Veuillez choisir un autre clan :</p>
+                    <a href="/clan/civils" class="btn">Civils</a>
+                    <a href="/clan/service_publique" class="btn fonctionnaire-btn">Fonctionnaires</a>
+                    <a href="/clan/illegal" class="btn bandit-btn">Bandits</a>
+                <% } %>
             <% } else { %>
-                <p>Veuillez remplir le formulaire pour rejoindre un clan.</p>
-                <a id="google-form-link" href="https://docs.google.com/forms/d/your-google-form-id/viewform" target="_blank" class="btn">Remplir le formulaire</a>
-            <% } %>
-
-            <% if (user.role === 'admin') { %>
-                <p><a href="/admin" class="btn">Interface d'administration</a></p>
+                <p>Erreur de rôle</p>
             <% } %>
         </div>
     </header>

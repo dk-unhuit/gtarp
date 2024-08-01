@@ -58,6 +58,7 @@ app.get('/home', isAuthenticated, (req, res) => {
     res.render('home', { user: req.user });
 });
 
+
 app.get('/admin-home', isAdmin, (req, res) => {
     res.render('admin-home', { user: req.user });
 });
@@ -169,3 +170,72 @@ app.get('/api/users', async (req, res) => {
         res.status(500).send('Erreur du serveur');
     }
 });
+
+app.get('/admin/reponses/:id', isAdmin, async (req, res) => {
+    try {
+        const response = await QuestionnaireResponse.findById(req.params.id).populate('userId', 'username discordId');
+        if (!response) {
+            return res.status(404).send('Réponse non trouvée');
+        }
+        res.render('reponses', { response });
+    } catch (error) {
+        console.error('Erreur lors de la récupération des réponses :', error);
+        res.status(500).send('Erreur du serveur');
+    }
+});
+
+app.post('/admin/update-status/:id', isAdmin, async (req, res) => {
+    try {
+        const responseId = req.params.id;
+        const { status } = req.body;
+        const response = await QuestionnaireResponse.findById(responseId).populate('userId');
+
+        if (response) {
+            response.status = status;
+            await response.save();
+            res.status(200).json({ message: 'Statut mis à jour.' });
+        } else {
+            res.status(404).json({ message: 'Réponse non trouvée.' });
+        }
+    } catch (error) {
+        console.error('Erreur lors de la mise à jour du statut :', error);
+        res.status(500).json({ message: 'Erreur lors de la mise à jour du statut.' });
+    }
+});
+
+app.post('/admin/accept/:id', isAdmin, async (req, res) => {
+    try {
+        const responseId = req.params.id;
+        const response = await QuestionnaireResponse.findById(responseId).populate('userId');
+
+        if (response) {
+            await User.findByIdAndUpdate(response.userId._id, { status: 'accepté' });
+            await QuestionnaireResponse.findByIdAndDelete(responseId);
+            res.redirect('/admin/gestion');
+        } else {
+            res.status(404).json({ message: 'Réponse non trouvée.' });
+        }
+    } catch (error) {
+        console.error('Erreur lors de l\'acceptation de la demande :', error);
+        res.status(500).json({ message: 'Erreur lors de l\'acceptation de la demande.' });
+    }
+});
+
+app.post('/admin/reject/:id', isAdmin, async (req, res) => {
+    try {
+        const responseId = req.params.id;
+        const response = await QuestionnaireResponse.findById(responseId).populate('userId');
+
+        if (response) {
+            await User.findByIdAndUpdate(response.userId._id, { status: 'refusé', clan: '' });
+            await QuestionnaireResponse.findByIdAndDelete(responseId);
+            res.redirect('/admin/gestion');
+        } else {
+            res.status(404).json({ message: 'Réponse non trouvée.' });
+        }
+    } catch (error) {
+        console.error('Erreur lors du refus de la demande :', error);
+        res.status(500).json({ message: 'Erreur lors du refus de la demande.' });
+    }
+});
+

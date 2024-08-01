@@ -46,13 +46,7 @@
                                 <td><%= response.userId ? response.userId.discordId : 'Inconnu' %></td>
                                 <td><%= response.clan %></td>
                                 <td>
-                                    <% if (response.responses) { %>
-                                        <% Object.keys(response.responses.toJSON()).forEach(question => { %>
-                                            <p><%= question %>: <%= response.responses.get(question) %></p>
-                                        <% }) %>
-                                    <% } else { %>
-                                        <p>Aucune réponse trouvée</p>
-                                    <% } %>
+                                    <a href="/admin/reponses/<%= response._id %>" class="btn-afficher">Afficher</a>
                                 </td>
                                 <td><%= new Date(response.createdAt).toLocaleString() %></td>
                                 <td>
