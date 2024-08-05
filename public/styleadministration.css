@@ -122,3 +122,8 @@ thead {
     background-color: #365438;
     color: #000;
 }
+
+.titre {
+    text-align: center;
+    margin-bottom: 20px;
+}
