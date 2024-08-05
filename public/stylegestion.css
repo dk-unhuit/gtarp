@@ -1,4 +1,3 @@
-/* stylegestion.css */
 * {
     padding: 0;
     margin: 0;
@@ -63,6 +62,7 @@ footer.footer {
     padding: 20px 0;
     font-size: 0.9rem;
     width: 100%;
+    position: relative;
     margin-top: auto;
 }
 footer.footer p {
@@ -99,7 +99,7 @@ th {
     background-color: #f2f2f2;
 }
 thead th {
-    color: #000; /* Changer la couleur de la police des noms des colonnes en noir */
+    color: #000; 
 }
 thead {
     background-color: #426445;
@@ -158,27 +158,25 @@ form#searchForm button {
 }
 
 form#searchForm button {
-    background-color: #f5f5f5; /* Couleur de fond similaire à celle du bouton Réinitialiser */
-    color: #333; /* Couleur de texte similaire */
+    background-color: #f5f5f5; 
+    color: #333; 
     border: 1px solid #ccc;
     cursor: pointer;
     transition: background 0.3s ease, color 0.3s ease;
 }
 
 form#searchForm button:hover {
-    background-color: #e0e0e0; /* Couleur de fond au survol similaire */
-    color: #000; /* Couleur de texte au survol similaire */
-}
+    background-color: #e0e0e0; 
+    color: #000; 
+}    
 
-/* Ajuster les tailles des boutons Rechercher et Réinitialiser pour qu'ils soient similaires */
 form#searchForm button,
 .btn-reset {
-    width: auto; /* Assure que la largeur s'adapte au contenu */
-    padding: 10px 20px; /* Taille similaire */
-    border-radius: 4px; /* Bordures similaires */
+    width: auto; 
+    padding: 10px 20px; 
+    border-radius: 4px;
 }
 
-/* Bouton de réinitialisation */
 .btn-reset {
     display: inline-block;
     padding: 10px 20px;
@@ -197,6 +195,6 @@ form#searchForm button,
 }
 
 .container h1 {
-    text-align: center; /* Centrer le texte */
-    margin-bottom: 20px; /* Ajouter un espace en dessous du texte */
+    text-align: center; 
+    margin-bottom: 20px;
 }

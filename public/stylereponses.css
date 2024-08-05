@@ -80,8 +80,8 @@ main {
 }
 
 .container {
-    width: 100%; /* Ajuster pour remplir la largeur */
-    max-width: 800px; /* Conserver la largeur maximale */
+    width: 100%; 
+    max-width: 800px; 
     margin: auto;
     padding: 20px;
     background-color: #fff;
@@ -89,8 +89,8 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 100px); /* Adjusted height to fill the screen minus header height */
-    justify-content: space-between; /* Ensures buttons are at the bottom */
+    min-height: calc(100vh - 100px); 
+    justify-content: space-between; 
 }
 
 h1, h2 {
@@ -105,8 +105,8 @@ h1, h2 {
 .buttons {
     display: flex;
     justify-content: space-around;
-    margin-top: auto; /* Pushes buttons to the bottom */
-    padding-bottom: 20px; /* Adds space above the footer */
+    margin-top: auto; 
+    padding-bottom: 20px; 
 }
 
 .buttons .btn {
