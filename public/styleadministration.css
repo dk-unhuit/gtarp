@@ -108,7 +108,7 @@ thead {
     margin: 5px 0;
 }
 .btn {
-    color: #fff;
+    color: #000;
     text-decoration: none;
     border: 1px solid #fff;
     padding: 10px 30px;
@@ -120,5 +120,5 @@ thead {
 }
 .btn:hover {
     background-color: #365438;
-    color: #fff;
+    color: #000;
 }
