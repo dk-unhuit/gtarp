@@ -6,10 +6,21 @@ function isAuthenticated(req, res, next) {
 }
 
 function isAdmin(req, res, next) {
-    if (req.isAuthenticated() && req.user.role === 'admin') {
+    if (req.isAuthenticated() && (req.user.role === 'admin' )) {
         return next();
     }
     res.redirect('/');
 }
 
-module.exports = { isAuthenticated, isAdmin };
+function isOwner(req, res, next) {
+    if (req.isAuthenticated() && req.user.role === 'owner') {
+        return next();
+    }
+    res.redirect('/');
+}
+
+module.exports = {
+    isAuthenticated,
+    isAdmin,
+    isOwner
+};

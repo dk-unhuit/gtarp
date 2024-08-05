@@ -1,0 +1,124 @@
+/* styleadministration.css */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/fond.jpg');
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: #fff;
+}
+.principale {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.logo a img {
+    max-width: 80px;
+    height: auto;
+    display: block;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+nav ul li {
+    margin-left: 20px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    font-weight: 500;
+    transition: background 0.6s ease, color 0.6s ease;
+}
+nav ul li a:hover,
+nav ul li.active a {
+    background: #fff;
+    color: #000;
+}
+.container {
+    flex: 1;
+    padding: 20px;
+}
+footer.footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    width: 100%;
+    margin-top: auto;
+}
+footer.footer p {
+    margin: 5px 0;
+}
+footer.footer a {
+    color: #1e90ff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+footer.footer a:hover {
+    text-decoration: underline;
+}
+footer.footer .social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+footer.footer .social-links a {
+    margin: 0 10px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+thead {
+    background-color: #426445;
+    color: #fff;
+}
+.action-form {
+    display: inline-block;
+    margin: 5px 0;
+}
+.btn {
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #fff;
+    padding: 10px 30px;
+    margin: 5px 0;
+    transition: background 0.6s ease, color 0.8s ease;
+    border-radius: 25px;
+    display: block;
+    text-align: center;
+}
+.btn:hover {
+    background-color: #365438;
+    color: #fff;
+}

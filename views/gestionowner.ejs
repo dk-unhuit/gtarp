@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion</title>
-    <link rel="stylesheet" href="/stylegestion.css">
+    <title>Gestion Owner</title>
+    <link rel="stylesheet" href="/stylegestionowner.css">
 </head>
 <body>
     <header>
@@ -14,12 +14,14 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="/admin-home">Accueil</a></li>
+                    <li><a href="/owner-home">Accueil</a></li>
                     <li><a href="#">Service</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">À propos de nous</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li class="active"><a href="/admin/gestion">Gestion</a></li>
+                    <li class="active"><a href="/owner/gestionowner">Gestion</a></li>
+                    <li><a href="/owner/administration">Administration</a></li>
+
                 </ul>
             </nav>
         </div>
@@ -28,7 +30,7 @@
         <div class="container">
             <h1>Gestion des réponses</h1>
             <!-- Formulaire de recherche -->
-            <form id="searchForm" action="/admin/gestion" method="get">
+            <form id="searchForm" action="/owner/gestionowner" method="get">
                 <input type="text" name="query" placeholder="Rechercher..." required>
                 <select name="filter">
                     <option value="username">Nom Discord</option>
@@ -38,7 +40,7 @@
                 </select>
                 <button type="submit">Rechercher</button>
                 <!-- Bouton pour réinitialiser la recherche -->
-                <a href="/admin/gestion" class="btn-reset">Réinitialiser</a>
+                <a href="/owner/gestionowner" class="btn-reset">Réinitialiser</a>
             </form>
             <table>
                 <thead>
@@ -59,14 +61,14 @@
                                 <td><%= response.user ? response.user.discordId : 'Inconnu' %></td>
                                 <td><%= response.clan %></td>
                                 <td>
-                                    <a href="/admin/reponses/<%= response._id %>" class="btn-afficher">Afficher</a>
+                                    <a href="/owner/reponsesowner/<%= response._id %>" class="btn-afficher">Afficher</a>
                                 </td>
                                 <td><%= new Date(response.createdAt).toLocaleString() %></td>
                                 <td>
-                                    <form action="/admin/accept/<%= response._id %>" method="post" class="action-form">
+                                    <form action="/owner/accept/<%= response._id %>" method="post" class="action-form">
                                         <button type="submit" class="btn accept-btn">Accepter</button>
                                     </form>
-                                    <form action="/admin/reject/<%= response._id %>" method="post" class="action-form">
+                                    <form action="/owner/reject/<%= response._id %>" method="post" class="action-form">
                                         <button type="submit" class="btn reject-btn">Refuser</button>
                                     </form>
                                 </td>

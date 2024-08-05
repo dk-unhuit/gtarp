@@ -1,13 +1,21 @@
-// models/User.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    discordId: { type: String, required: true, unique: true },
-    username: { type: String, required: true },
-    discriminator: { type: String, required: true },
-    role: { type: String, default: 'user' },
-    status: { type: String, default: 'neutre' },
-    clan: { type: String, default: '' }
+    username: String,
+    discordId: String,
+    role: {
+        type: String,
+        enum: ['user', 'admin', 'owner'],
+        default: 'user'
+    },
+    status: {
+        type: String,
+        enum: ['attente', 'accepté', 'refusé'],
+        default: 'attente'
+    },
+    clan: String
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
