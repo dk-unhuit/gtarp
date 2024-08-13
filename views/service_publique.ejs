@@ -92,7 +92,7 @@
                     <label for="q3">Question 3 : Quel projet souhaites-tu réaliser sur US Life ?</label>
                     <input type="text" id="q3" name="q3">
                 </div>
-                <button type="submit">Soumettre</button>
+                <button type="submit" id="submit-btn">Soumettre</button>
             </form>
         </div>
     </main>
@@ -119,6 +119,9 @@
             const data = {};
             formData.forEach((value, key) => data[key] = value);
 
+            const submitButton = document.getElementById('submit-btn');
+            submitButton.disabled = true; // Désactiver le bouton après le premier clic
+
             try {
                 const response = await fetch('/clan/service_publique', {
                     method: 'POST',
@@ -132,9 +135,11 @@
                     showNotification('Réponses enregistrées avec succès.', true);
                 } else {
                     showNotification('Les réponses n\'ont pas pu être enregistrées.', false);
+                    submitButton.disabled = false; // Réactiver le bouton si l'envoi échoue
                 }
             } catch (err) {
                 showNotification('Les réponses n\'ont pas pu être enregistrées.', false);
+                submitButton.disabled = false; // Réactiver le bouton en cas d'erreur
             }
         });
     </script>
